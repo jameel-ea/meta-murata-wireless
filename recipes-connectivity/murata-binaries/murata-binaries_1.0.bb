@@ -103,6 +103,7 @@ do_install () {
 	# Added Calibration configuration file for 1YM(NXP)
 #	install -m 444 ${S}/10-network.rules                  ${D}${sysconfdir}/udev/rules.d/10-network.rules
 	# Added by vkjb
+	install -d ${D}/lib/firmware/nxp
     	install -m 0644 ${S}/WlanCalData_ext_DB_W8997_1YM_ES2_Rev_C.conf ${D}/lib/firmware/nxp
 
 #       Copying wl tool binary to /usr/sbin
