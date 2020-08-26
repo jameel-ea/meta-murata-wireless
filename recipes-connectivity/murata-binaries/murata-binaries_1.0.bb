@@ -9,7 +9,7 @@ SRC_URI = " \
 	git://github.com/murata-wireless/cyw-bt-patch;protocol=http;branch=zeus-gamera;destsuffix=cyw-bt-patch;name=cyw-bt-patch \
 	git://github.com/murata-wireless/cyw-fmac-utils-imx32;protocol=http;branch=gamera;destsuffix=cyw-fmac-utils-imx32;name=cyw-fmac-utils-imx32 \
 	git://github.com/murata-wireless/cyw-fmac-utils-imx64;protocol=http;branch=gamera;destsuffix=cyw-fmac-utils-imx64;name=cyw-fmac-utils-imx64 \
-	file://10-network.rules \
+	file://WlanCalData_ext_DB_W8997_1YM_ES2_Rev_C.conf \
 "
 
 SRCREV_cyw-fmac-fw="6e2ae75a1d1ee51a98544682981a2eedd6c67e6a"
@@ -100,7 +100,10 @@ do_install () {
 	install -m 444 ${S}/cyw-fmac-nvram/cyfmac43455-sdio.1MW.txt ${D}/lib/firmware/cypress/cyfmac43455-sdio.txt
 	install -m 444 ${S}/cyw-fmac-nvram/README_NVRAM ${D}/lib/firmware/cypress
 
-	install -m 444 ${S}/10-network.rules                  ${D}${sysconfdir}/udev/rules.d/10-network.rules
+	# Added Calibration configuration file for 1YM(NXP)
+#	install -m 444 ${S}/10-network.rules                  ${D}${sysconfdir}/udev/rules.d/10-network.rules
+	# Added by vkjb
+    	install -m 0644 ${S}/WlanCalData_ext_DB_W8997_1YM_ES2_Rev_C.conf ${D}/lib/firmware/nxp
 
 #       Copying wl tool binary to /usr/sbin
 	if [ ${DO_INSTALL_64BIT_BINARIES} = "yes" ]; then
@@ -118,7 +121,7 @@ FILES_${PN} += "${bindir}"
 FILES_${PN} += "${sbindir}"
 FILES_${PN} += "{sysconfdir}/firmware"
 FILES_${PN} += "/lib"
-
+FILES_${PN} += "{sysconfdir}/firmware/nxp"
 
 FILES_${PN}-mfgtest = " \
 	/usr/bin/wl \
