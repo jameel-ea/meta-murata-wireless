@@ -85,7 +85,7 @@ do_compile () {
 	oe_runmake -C wpa_supplicant
 }
 
-do_install () {
+do_old_install () {
 	install -d ${D}${sbindir}
 	install -m 755 wpa_supplicant/wpa_supplicant ${D}${sbindir}
 	install -m 755 wpa_supplicant/wpa_cli        ${D}${sbindir}
@@ -120,6 +120,41 @@ do_install () {
 	install -m 0644 ${WORKDIR}/99_wpa_supplicant ${D}/etc/default/volatiles
 }
 
+
+do_install () {
+	install -d ${D}${sbindir}/cypress
+	install -m 755 wpa_supplicant/wpa_supplicant ${D}${sbindir}/cypress
+	install -m 755 wpa_supplicant/wpa_cli        ${D}${sbindir}/cypress
+
+	install -d ${D}${bindir}/cypress
+	install -m 755 wpa_supplicant/wpa_passphrase ${D}${bindir}/cypress
+
+	install -d ${D}${docdir}/cypress/wpa_supplicant
+	install -m 644 wpa_supplicant/README ${WORKDIR}/wpa_supplicant.conf ${D}${docdir}/cypress/wpa_supplicant
+
+	install -d ${D}${sysconfdir}/cypress
+	install -m 600 ${WORKDIR}/wpa_supplicant.conf-sane ${D}${sysconfdir}/cypress/wpa_supplicant.conf
+
+	install -d ${D}${sysconfdir}/network/if-pre-up.d/cypress
+	install -d ${D}${sysconfdir}/network/if-post-down.d/cypress
+	install -d ${D}${sysconfdir}/network/if-down.d/cypress
+	install -m 755 ${WORKDIR}/wpa-supplicant.sh ${D}${sysconfdir}/network/if-pre-up.d/cypress/wpa-supplicant
+	cd ${D}${sysconfdir}/network/ && \
+	ln -sf ../if-pre-up.d/cypress/wpa-supplicant if-post-down.d/cypress/wpa-supplicant
+
+	install -d ${D}/${sysconfdir}/dbus-1/system.d/cypress
+	install -m 644 ${S}/wpa_supplicant/dbus/dbus-wpa_supplicant.conf ${D}/${sysconfdir}/dbus-1/system.d/cypress
+	install -d ${D}/${datadir}/dbus-1/system-services/cypress
+	install -m 644 ${S}/wpa_supplicant/dbus/*.service ${D}/${datadir}/dbus-1/system-services/cypress
+
+	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
+		install -d ${D}/${systemd_unitdir}/system/cypress
+		install -m 644 ${S}/wpa_supplicant/systemd/*.service ${D}/${systemd_unitdir}/system/cypress
+	fi
+
+	install -d ${D}/etc/default/volatiles
+	install -m 0644 ${WORKDIR}/99_wpa_supplicant ${D}/etc/default/volatiles
+}
 pkg_postinst_wpa-supplicant () {
 	# If we're offline, we don't need to do this.
 	if [ "x$D" = "x" ]; then
