@@ -1,4 +1,3 @@
-# Copyright (C) 2017 Khem Raj <raj.khem@gmail.com>
 # Released under the MIT license (see COPYING.MIT for the terms)
 
 
