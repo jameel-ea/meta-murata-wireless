@@ -15,8 +15,8 @@ SRC_URI = " \
 SRCREV_cyw-fmac-fw="6e2ae75a1d1ee51a98544682981a2eedd6c67e6a"
 SRCREV_cyw-fmac-nvram="fddcfc27e2d5e9ba91c7d2765fc4345093fc20fd"
 SRCREV_cyw-bt-patch="558f98ac67bd944afa003c247643fd47cc2dd3ab"
-SRCREV_cyw-fmac-utils-imx32="b1cbd9170dd96ac73102aeee5d73b11575e1028a"
-SRCREV_cyw-fmac-utils-imx64="6848dc6c805a29ff2a297d99557b8c875342cd57"
+SRCREV_cyw-fmac-utils-imx32="5c909957395696ee46220e38944c31c239a1e218"
+SRCREV_cyw-fmac-utils-imx64="495efd4d23731a7bbf5e7547e201f11c8b60e030"
 
 SRCREV_default = "${AUTOREV}"
 
