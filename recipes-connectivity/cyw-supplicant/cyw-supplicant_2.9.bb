@@ -82,6 +82,8 @@ do_install () {
         echo "ARCH: ${ARCH} "
 	install -d ${D}${sbindir}
 	install -m 755 wpa_supplicant/wpa_supplicant ${D}${sbindir}/wpa_supplicant.cyw
+        rm ${D}${sbindir}/wpa_supplicant
+	ln -sf /usr/sbin/wpa_supplicant.cyw ${D}${sbindir}/wpa_supplicant
 }
 
 pkg_postinst_wpa-supplicant () {
