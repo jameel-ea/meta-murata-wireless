@@ -6,7 +6,7 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://COPYING;md5=279b4f5abb9c153c285221855ddb78cc\
                     file://README;beginline=1;endline=56;md5=e7d3dbb01f75f0b9799e192731d1e1ff \
                     file://wpa_supplicant/wpa_supplicant.c;beginline=1;endline=12;md5=0a8b56d3543498b742b9c0e94cc2d18b"
-DEPENDS = "dbus libnl openssl"
+DEPENDS = "dbus libnl openssl wpa-supplicant"
 #RRECOMMENDS_${PN} = "wpa-supplicant-passphrase wpa-supplicant-cli"
 
 PACKAGECONFIG ??= "gnutls"
@@ -82,7 +82,6 @@ do_install () {
         echo "ARCH: ${ARCH} "
 	install -d ${D}${sbindir}
 	install -m 755 wpa_supplicant/wpa_supplicant ${D}${sbindir}/wpa_supplicant.cyw
-        rm ${D}${sbindir}/wpa_supplicant
 	ln -sf /usr/sbin/wpa_supplicant.cyw ${D}${sbindir}/wpa_supplicant
 }
 

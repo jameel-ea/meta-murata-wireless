@@ -1,8 +1,6 @@
 do_install_append () {
     	install -d ${D}${sbindir}
 	install -m 755 ${D}${sbindir}/wpa_supplicant ${D}${sbindir}/wpa_supplicant.nxp
-#        rm ${D}${sbindir}/wpa_supplicant
-#	ln -sf /usr/sbin/wpa_supplicant.nxp ${D}${sbindir}/wpa_supplicant
 }
 
 FILES_${PN} += "/usr/bin/wpa_supplicant"
