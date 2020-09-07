@@ -23,7 +23,7 @@ SRCREV_default = "${AUTOREV}"
 
 S = "${WORKDIR}"
 B = "${WORKDIR}"
-DEPENDS = " libnl"
+DEPENDS = " libnl wpa-supplicant cyw-supplicant"
 
 do_compile () {
 	echo "Compiling: "
@@ -112,6 +112,8 @@ do_install () {
 	else
 		install -m 755 ${S}/cyw-fmac-utils-imx32/wl ${D}/usr/sbin/wl
 	fi
+
+	ln -sf /usr/sbin/wpa_supplicant.cyw ${D}${sbindir}/wpa_supplicant
 }
 
 PACKAGES =+ "${PN}-mfgtest"
@@ -123,6 +125,7 @@ FILES_${PN} += "${sbindir}"
 FILES_${PN} += "{sysconfdir}/firmware"
 FILES_${PN} += "/lib"
 FILES_${PN} += "{sysconfdir}/firmware/nxp"
+FILES_${PN} += "/usr/sbin/wpa_supplicant"
 
 FILES_${PN}-mfgtest = " \
 	/usr/bin/wl \
