@@ -113,7 +113,7 @@ do_install () {
 		install -m 755 ${S}/cyw-fmac-utils-imx32/wl ${D}/usr/sbin/wl
 	fi
 
-	ln -sf /usr/sbin/wpa_supplicant.cyw ${D}${sbindir}/wpa_supplicant
+#	ln -sf /usr/sbin/wpa_supplicant.cyw ${D}${sbindir}/wpa_supplicant
 }
 
 PACKAGES =+ "${PN}-mfgtest"
@@ -125,7 +125,7 @@ FILES_${PN} += "${sbindir}"
 FILES_${PN} += "{sysconfdir}/firmware"
 FILES_${PN} += "/lib"
 FILES_${PN} += "{sysconfdir}/firmware/nxp"
-FILES_${PN} += "/usr/sbin/wpa_supplicant"
+#FILES_${PN} += "/usr/sbin/wpa_supplicant"
 
 FILES_${PN}-mfgtest = " \
 	/usr/bin/wl \
