@@ -13,7 +13,7 @@ SRC_URI =  " \
     file://0001-kernel_change_for_fmac_log_string.patch;apply=yes \
     file://0002-enable_brcmf_sdio_wq_highpri.patch;apply=yes \    
 "
-SRCREV = "37311da6fe80683da99c6dbfc511f3750f02fb75"
+SRCREV = "612f98ac05b405e9f4ea290a61603be0a825b969"
 S = "${WORKDIR}/git"
 
 
