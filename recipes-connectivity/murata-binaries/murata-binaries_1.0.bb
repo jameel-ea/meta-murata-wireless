@@ -4,16 +4,16 @@ LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://${S}/cyw-bt-patch/LICENCE.cypress;md5=cbc5f665d04f741f1e006d2096236ba7"
 
 SRC_URI = " \
-	git://github.com/jameel-kareem/cyw-fmac-fw;protocol=http;branch=zigra;destsuffix=cyw-fmac-fw;name=cyw-fmac-fw \
-	git://github.com/jameel-kareem/cyw-fmac-nvram;protocol=http;branch=zigra;destsuffix=cyw-fmac-nvram;name=cyw-fmac-nvram \
+	git://github.com/jameel-kareem1/cyw-fmac-fw;protocol=http;branch=zigra;destsuffix=cyw-fmac-fw;name=cyw-fmac-fw \
+	git://github.com/jameel-kareem1/cyw-fmac-nvram;protocol=http;branch=zigra;destsuffix=cyw-fmac-nvram;name=cyw-fmac-nvram \
 	git://github.com/murata-wireless/cyw-bt-patch;protocol=http;branch=zeus-gamera;destsuffix=cyw-bt-patch;name=cyw-bt-patch \
 	git://github.com/jameel-ea/cyw-fmac-utils-imx32;protocol=http;branch=zigra;destsuffix=cyw-fmac-utils-imx32;name=cyw-fmac-utils-imx32 \
 	git://github.com/jameel-ea/cyw-fmac-utils-imx64;protocol=http;branch=zigra;destsuffix=cyw-fmac-utils-imx64;name=cyw-fmac-utils-imx64 \
 	file://WlanCalData_ext_DB_W8997_1YM_ES2_Rev_C.conf \
 "
 
-SRCREV_cyw-fmac-fw="6e2ae75a1d1ee51a98544682981a2eedd6c67e6a"
-SRCREV_cyw-fmac-nvram="fddcfc27e2d5e9ba91c7d2765fc4345093fc20fd"
+SRCREV_cyw-fmac-fw="f0b14eae4311a1941618e555c5e392f379f0a8f6"
+SRCREV_cyw-fmac-nvram="3f09c74b081cca1946656d85e167364336dedc0a"
 SRCREV_cyw-bt-patch="558f98ac67bd944afa003c247643fd47cc2dd3ab"
 SRCREV_cyw-fmac-utils-imx32="5c909957395696ee46220e38944c31c239a1e218"
 SRCREV_cyw-fmac-utils-imx64="495efd4d23731a7bbf5e7547e201f11c8b60e030"
@@ -98,6 +98,9 @@ do_install () {
 	install -m 444 ${S}/cyw-fmac-nvram/cyfmac43362-sdio.SN8000.txt ${D}/lib/firmware/cypress/cyfmac43362-sdio.txt
 	install -m 444 ${S}/cyw-fmac-nvram/cyfmac43430-sdio.1DX.txt ${D}/lib/firmware/cypress/cyfmac43430-sdio.txt
 	install -m 444 ${S}/cyw-fmac-nvram/cyfmac43455-sdio.1MW.txt ${D}/lib/firmware/cypress/cyfmac43455-sdio.txt
+	install -m 444 ${S}/cyw-fmac-nvram/cyfmac4359-pcie.txt ${D}/lib/firmware/cypress/cyfmac4359-pcie.txt
+	install -m 444 ${S}/cyw-fmac-nvram/cyfmac4359-sdio.txt ${D}/lib/firmware/cypress/cyfmac4359-sdio.txt
+	install -m 444 ${S}/cyw-fmac-nvram/cyfmac54591-pcie.txt ${D}/lib/firmware/cypress/cyfmac54591-pcie.txt
 	install -m 444 ${S}/cyw-fmac-nvram/README_NVRAM ${D}/lib/firmware/cypress
 
 	# Added Calibration configuration file for 1YM(NXP)
