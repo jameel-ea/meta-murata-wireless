@@ -1,8 +1,0 @@
-do_compile_prepend () {
-    # Change build folder to 8997 folder
-    cd ${S}/mwifiex_8997
-
-    export ARCH=arm
-    export CROSS_COMPILE=arm-linux-gnueabi-
-    oe_runmake build
-}
