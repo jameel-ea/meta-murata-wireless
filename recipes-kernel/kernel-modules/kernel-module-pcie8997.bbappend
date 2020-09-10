@@ -1,5 +1,4 @@
-do_compile ()
-{
+do_compile () {
     # Change build folder to 8997 folder
     cd ${S}/mwifiex_8997
 
@@ -16,3 +15,4 @@ do_compile ()
 
     oe_runmake build
 }
+
