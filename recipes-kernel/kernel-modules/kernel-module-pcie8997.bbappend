@@ -11,5 +11,8 @@ do_compile ()
 
     export CROSS_COMPILE="${TARGET_PREFIX}"
 
+    echo "VKJB: ARCH is ${ARCH}"
+    echo "VKJB: CROSS_COMPILE is ${CROSS_COMPILE}"
+
     oe_runmake build
 }
