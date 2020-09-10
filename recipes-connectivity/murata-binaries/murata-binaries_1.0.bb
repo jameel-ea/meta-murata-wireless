@@ -12,7 +12,7 @@ SRC_URI = " \
 	file://WlanCalData_ext_DB_W8997_1YM_ES2_Rev_C.conf \
 "
 
-SRCREV_cyw-fmac-fw="f0b14eae4311a1941618e555c5e392f379f0a8f6"
+SRCREV_cyw-fmac-fw="0019805b4c9979ba94ccbd1455f334b83a18f0b1"
 SRCREV_cyw-fmac-nvram="3f09c74b081cca1946656d85e167364336dedc0a"
 SRCREV_cyw-bt-patch="558f98ac67bd944afa003c247643fd47cc2dd3ab"
 SRCREV_cyw-fmac-utils-imx32="5c909957395696ee46220e38944c31c239a1e218"
@@ -86,6 +86,7 @@ do_install () {
 	install -m 444 ${S}/cyw-fmac-fw/cyfmac43012-sdio.1LV.clm_blob ${D}/lib/firmware/cypress/cyfmac43012-sdio.clm_blob
 	install -m 444 ${S}/cyw-fmac-fw/cyfmac43430-sdio.1DX.clm_blob ${D}/lib/firmware/cypress/cyfmac43430-sdio.clm_blob
 	install -m 444 ${S}/cyw-fmac-fw/cyfmac43455-sdio.1MW.clm_blob ${D}/lib/firmware/cypress/cyfmac43455-sdio.clm_blob
+	install -m 444 ${S}/cyw-fmac-fw/cyfmac4359-sdio.clm_blob ${D}/lib/firmware/cypress/cyfmac4359-pcie.clm_blob
 
 #       Copying NVRAM files (*.txt) to lib/firmware/cypress and lib/firmware/cypress/murata-master
 	install -m 444 ${S}/cyw-fmac-nvram/*.txt ${D}/lib/firmware/cypress/murata-master
