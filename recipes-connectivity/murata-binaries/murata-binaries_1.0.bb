@@ -10,6 +10,7 @@ SRC_URI = " \
 	git://github.com/jameel-ea/cyw-fmac-utils-imx32;protocol=http;branch=zigra;destsuffix=cyw-fmac-utils-imx32;name=cyw-fmac-utils-imx32 \
 	git://github.com/jameel-ea/cyw-fmac-utils-imx64;protocol=http;branch=zigra;destsuffix=cyw-fmac-utils-imx64;name=cyw-fmac-utils-imx64 \
 	file://WlanCalData_ext_DB_W8997_1YM_ES2_Rev_C.conf \
+	file://switch_module_v1.1.sh \
 "
 
 SRCREV_cyw-fmac-fw="0019805b4c9979ba94ccbd1455f334b83a18f0b1"
@@ -116,6 +117,9 @@ do_install () {
 	else
 		install -m 755 ${S}/cyw-fmac-utils-imx32/wl ${D}/usr/sbin/wl
 	fi
+
+	# Added Script file for switching between CYW and NXP
+	install -m 755 ${S}/switch_module_v1.1.sh ${D}/usr/sbin/switch_module_v1.1.sh
 
 	ln -sf /usr/sbin/wpa_supplicant.cyw ${D}${sbindir}/wpa_supplicant
 }
