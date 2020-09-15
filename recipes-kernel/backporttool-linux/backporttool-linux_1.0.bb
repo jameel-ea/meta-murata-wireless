@@ -14,7 +14,7 @@ SRC_URI =  " \
     file://0002-enable_brcmf_sdio_wq_highpri.patch;apply=yes \
     file://0003-brcmfmac-req-fw-direct-war.patch;apply=yes \
 "
-SRCREV = "da36593ae4d920ff21c9e76d55890f28056d187a"
+SRCREV = "f734f2d1bdf1ff401e561093201c3b78ebad10c9"
 S = "${WORKDIR}/git"
 
 
