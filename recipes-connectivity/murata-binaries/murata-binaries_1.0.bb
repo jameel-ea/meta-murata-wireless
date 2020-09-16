@@ -117,7 +117,7 @@ do_install () {
 	fi
 
 	# Added Script file for switching between CYW and NXP
-	install -m 755 ${S}/switch_module_v1.1.sh ${D}/usr/sbin/switch_module_v1.1.sh
+	install -m 755 ${S}/switch_module_v1.2.sh ${D}/usr/sbin/switch_module_v1.2.sh
 
 	ln -sf /usr/sbin/wpa_supplicant.cyw ${D}${sbindir}/wpa_supplicant
 }

@@ -50,8 +50,7 @@ EOT
   depmod -a
 }
 
-
-function prepare_for_nxp_pcie() {
+function prepare_for_nxp_ym_sdio_and_pcie() {
   if [ -e /usr/sbin/wpa_supplicant ]; then
     rm /usr/sbin/wpa_supplicant
   fi
@@ -103,7 +102,6 @@ function switch_to_brcm_sdio() {
   echo ""
   echo "Setting up for 1DX, 1LV, 1MW, 1WZ (Broadcom - SDIO)"
   fw_setenv fdt_file fsl-imx8mm-ea-ucom-kit_v2.dtb
-  #fw_setenv image Image
   prepare_for_cypress
   echo ""
 }
@@ -112,7 +110,6 @@ function switch_to_brcm_pcie() {
   echo ""
   echo "Setting up for 1CX, 1VA (Broadcom - PCIe)"
   fw_setenv fdt_file fsl-imx8mm-ea-ucom-kit_v2-pcie.dtb
-  #fw_setenv image Image
   prepare_for_cypress
   echo ""
 }
@@ -121,17 +118,24 @@ function switch_to_nxp_sdio() {
   echo ""
   echo "Setting up for 1ZM (NXP - SDIO)"
   fw_setenv fdt_file fsl-imx8mm-ea-ucom-kit_v2.dtb
-  #fw_setenv image Image.1ZM.bin
   prepare_for_nxp_sdio
   echo ""
 }
 
-function switch_to_nxp_pcie() {
+function switch_to_nxp_ym_sdio() {
+  echo ""
+  echo "Setting up for 1YM (NXP - SDIO)"
+  fw_setenv fdt_file fsl-imx8mm-ea-ucom-kit_v2.dtb
+  prepare_for_nxp_ym_sdio_and_pcie
+  echo ""
+}
+
+
+function switch_to_nxp_ym_pcie() {
   echo ""
   echo "Setting up for 1YM (NXP - PCIe)"
   fw_setenv fdt_file fsl-imx8mm-ea-ucom-kit_v2-pcie.dtb
-  #fw_setenv image Image.1YM.bin
-  prepare_for_nxp_pcie
+  prepare_for_nxp_ym_sdio_and_pcie
   echo ""
 }
 
@@ -142,7 +146,7 @@ function usage() {
   echo "  $0  <module>"
   echo ""
   echo "Where:"
-  echo "  <module> is one of 1CX, 1DX, 1LV, 1MW, 1VA, 1WZ, 1ZM or current"
+  echo "  <module> is one of 1CX, 1DX, 1LV, 1MW, 1VA, 1WZ, 1ZM, 1YM-SDIO, 1YM-PCIe, or current"
   echo ""
 }
 
@@ -162,8 +166,11 @@ case $1 in
   zm|1zm|1ZM)
     switch_to_nxp_sdio
     ;;
-  ym|1ym|1YM)
-    switch_to_nxp_pcie
+  ym|1ym|1YM|ym-sdio|1ym-sdio|1YM-SDIO)
+    switch_to_nxp_ym_sdio
+    ;;
+  ym-pcie|1ym-pcie|1YM-PCIe|1YM-PCIE)
+    switch_to_nxp_ym_pcie
     ;;
   current|CURRENT)
     current
