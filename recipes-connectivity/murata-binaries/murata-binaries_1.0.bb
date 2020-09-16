@@ -10,7 +10,7 @@ SRC_URI = " \
 	git://github.com/murata-wireless/cyw-fmac-utils-imx32;protocol=http;branch=zigra;destsuffix=cyw-fmac-utils-imx32;name=cyw-fmac-utils-imx32 \
 	git://github.com/murata-wireless/cyw-fmac-utils-imx64;protocol=http;branch=zigra;destsuffix=cyw-fmac-utils-imx64;name=cyw-fmac-utils-imx64 \
 	file://WlanCalData_ext_DB_W8997_1YM_ES2_Rev_C.conf \
-	file://switch_module_v1.1.sh \
+	file://switch_module_v1.2.sh \
 "
 
 SRCREV_cyw-fmac-fw="52174a18134c7ef4a674ecd9fb68fc6e2bced969"
