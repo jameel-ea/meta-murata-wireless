@@ -100,16 +100,16 @@ function prepare_for_cypress() {
 
 function switch_to_brcm_sdio() {
   echo ""
-  echo "Setting up for 1DX, 1LV, 1MW, 1WZ (Broadcom - SDIO)"
-  fw_setenv fdt_file fsl-imx8mm-ea-ucom-kit_v2.dtb
+  echo "Setting up for 1DX, 1LV, 1MW, 1WZ (Cypress - SDIO)"
+  fw_setenv fdt_file imx6dlea-com-kit_v2.dtb
   prepare_for_cypress
   echo ""
 }
 
 function switch_to_brcm_pcie() {
   echo ""
-  echo "Setting up for 1CX, 1VA (Broadcom - PCIe)"
-  fw_setenv fdt_file fsl-imx8mm-ea-ucom-kit_v2-pcie.dtb
+  echo "Setting up for 1CX, 1VA (Cypress - PCIe)"
+  fw_setenv fdt_file imx6dlea-com-kit_v2-pcie.dtb
   prepare_for_cypress
   echo ""
 }
@@ -117,7 +117,7 @@ function switch_to_brcm_pcie() {
 function switch_to_nxp_sdio() {
   echo ""
   echo "Setting up for 1ZM (NXP - SDIO)"
-  fw_setenv fdt_file fsl-imx8mm-ea-ucom-kit_v2.dtb
+  fw_setenv fdt_file imx6dlea-com-kit_v2.dtb
   prepare_for_nxp_sdio
   echo ""
 }
@@ -125,7 +125,7 @@ function switch_to_nxp_sdio() {
 function switch_to_nxp_ym_sdio() {
   echo ""
   echo "Setting up for 1YM (NXP - SDIO)"
-  fw_setenv fdt_file fsl-imx8mm-ea-ucom-kit_v2.dtb
+  fw_setenv fdt_file imx6dlea-com-kit_v2.dtb
   prepare_for_nxp_ym_sdio_and_pcie
   echo ""
 }
@@ -134,7 +134,7 @@ function switch_to_nxp_ym_sdio() {
 function switch_to_nxp_ym_pcie() {
   echo ""
   echo "Setting up for 1YM (NXP - PCIe)"
-  fw_setenv fdt_file fsl-imx8mm-ea-ucom-kit_v2-pcie.dtb
+  fw_setenv fdt_file imx6dlea-com-kit_v2-pcie.dtb
   prepare_for_nxp_ym_sdio_and_pcie
   echo ""
 }
@@ -146,7 +146,7 @@ function usage() {
   echo "  $0  <module>"
   echo ""
   echo "Where:"
-  echo "  <module> is one of 1CX, 1DX, 1LV, 1MW, 1VA, 1WZ, 1ZM, 1YM-SDIO, 1YM-PCIe, or current"
+  echo "  <module> is one of CYW-SDIO, CYW-PCIe, 1ZM, 1YM-SDIO, 1YM-PCIe, or current"
   echo ""
 }
 
@@ -157,10 +157,10 @@ if [[ $# -eq 0 ]]; then
 fi
 
 case $1 in
-  cx|1cx|1CX|va|1va|1VA)
+  CYW-PCIE|CYW-PCIe|cyw-pcie)
     switch_to_brcm_pcie
     ;;
-  dx|1dx|1DX|lv|1lv|1LV|mw|1mw|1MW|wz|1wz|1WZ)
+  CYW-SDIO|cyw-sdio)
     switch_to_brcm_sdio
     ;;
   zm|1zm|1ZM)
