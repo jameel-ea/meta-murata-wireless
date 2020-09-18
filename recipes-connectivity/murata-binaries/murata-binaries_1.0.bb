@@ -124,7 +124,7 @@ do_install () {
 	fi
 
 	# Added Script file for switching between CYW and NXP
-	install -m 755 ${S}/switch_module_v1.2.sh ${D}/usr/sbin/switch_module_v1.2.sh
+#	install -m 755 ${S}/switch_module_v1.2.sh ${D}/usr/sbin/switch_module_v1.2.sh
 
 	ln -sf /usr/sbin/wpa_supplicant.cyw ${D}${sbindir}/wpa_supplicant
 
@@ -134,6 +134,40 @@ do_install () {
 	install -m 0644 ${S}/git/mrvl/pcieusb8997_combo_v4.bin ${D}/lib/firmware/nxp
 	install -m 0644 ${S}/imx-firmware/nxp/FwImage_8997/helper_uart_3000000.bin ${D}/lib/firmware/nxp
 	install -m 0644 ${S}/imx-firmware/nxp/FwImage_8997/uart8997_bt_v4.bin ${D}/lib/firmware/nxp
+
+#	Based on MACHINE type
+	case $MACHINE in
+	  imx6dlea-com)
+		install -m 755 ${S}/switch_module_v1.4_imx6dlea-com.sh ${D}/usr/sbin/switch_module_v1.4.sh
+		;;
+	  imx6qea-com)
+		install -m 755 ${S}/switch_module_v1.4_imx6qea-com.sh ${D}/usr/sbin/switch_module_v1.4.sh
+		;;
+	  imx6sxea-com)
+		install -m 755 ${S}/switch_module_v1.4_imx6sxea-com.sh ${D}/usr/sbin/switch_module_v1.4.sh
+		;;
+ 	  imx6ulea-com)
+		install -m 755 ${S}/switch_module_v1.4_imx6ulea-com.sh ${D}/usr/sbin/switch_module_v1.4.sh
+		;;
+	  imx7dea-com)
+		install -m 755 ${S}/switch_module_v1.4_imx7dea-com.sh ${D}/usr/sbin/switch_module_v1.4.sh
+		;;
+	  imx7dea-ucom)
+		install -m 755 ${S}/switch_module_v1.4_imx7dea-ucom.sh ${D}/usr/sbin/switch_module_v1.4.sh
+		;;
+	  imx7ulpea-ucom)
+		install -m 755 ${S}/switch_module_v1.4_imx7ulpea-ucom.sh ${D}/usr/sbin/switch_module_v1.4.sh
+		;;
+	  imx8mmea-ucom)
+		install -m 755 ${S}/switch_module_v1.4_imx8mmea-ucom.sh ${D}/usr/sbin/switch_module_v1.4.sh
+		;;
+	  imx8mnea-ucom)
+		install -m 755 ${S}/switch_module_v1.4_imx8mnea-ucom.sh ${D}/usr/sbin/switch_module_v1.4.sh
+		;;
+	  imx8mqea-com)
+		install -m 755 ${S}/switch_module_v1.4_imx8mqea-com.sh ${D}/usr/sbin/switch_module_v1.4.sh
+		;;
+	esac
 
 }
 

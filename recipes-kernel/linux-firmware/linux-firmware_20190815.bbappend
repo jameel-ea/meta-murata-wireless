@@ -2,7 +2,7 @@ do_install_append() {
 	# Remove pointless bash script
 	rm -r ${D}/lib/firmware/brcm
 	rm -r ${D}/etc/firmware
-#    	rm -rf ${D}${nonarch_base_libdir}/firmware/mrvl
+    	rm -rf ${D}${nonarch_base_libdir}/firmware/mrvl
 
 }
 
