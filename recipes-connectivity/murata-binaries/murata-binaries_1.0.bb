@@ -2,6 +2,7 @@ SUMMARY = "Murata Binaries"
 LICENSE = "BSD"
 
 LIC_FILES_CHKSUM = "file://${S}/cyw-bt-patch/LICENCE.cypress;md5=cbc5f665d04f741f1e006d2096236ba7"
+IMX_FIRMWARE_SRC ?= "git://github.com/NXP/imx-firmware.git;protocol=https"
 
 SRC_URI = " \
 	git://github.com/murata-wireless/cyw-fmac-fw;protocol=http;branch=zigra;destsuffix=cyw-fmac-fw;name=cyw-fmac-fw \
@@ -9,9 +10,15 @@ SRC_URI = " \
 	git://github.com/murata-wireless/cyw-bt-patch;protocol=http;branch=zeus-zigra;destsuffix=cyw-bt-patch;name=cyw-bt-patch \
 	git://github.com/murata-wireless/cyw-fmac-utils-imx32;protocol=http;branch=zigra;destsuffix=cyw-fmac-utils-imx32;name=cyw-fmac-utils-imx32 \
 	git://github.com/murata-wireless/cyw-fmac-utils-imx64;protocol=http;branch=zigra;destsuffix=cyw-fmac-utils-imx64;name=cyw-fmac-utils-imx64 \
+	git://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git;protocol=http;branch=master \
 	file://WlanCalData_ext_DB_W8997_1YM_ES2_Rev_C.conf \
 	file://switch_module_v1.2.sh \
 "
+SRC_URI += " \
+           ${IMX_FIRMWARE_SRC};branch=master;destsuffix=imx-firmware;name=imx-firmware \
+"
+SRCREV_imx-firmware = "685ace656284167376241c804827f046b984ce25"
+
 
 SRCREV_cyw-fmac-fw="52174a18134c7ef4a674ecd9fb68fc6e2bced969"
 SRCREV_cyw-fmac-nvram="c75ea2d41e39e0d6cf6b2ae7e65e81c57bf16670"
@@ -24,7 +31,7 @@ SRCREV_default = "${AUTOREV}"
 
 S = "${WORKDIR}"
 B = "${WORKDIR}"
-DEPENDS = " libnl wpa-supplicant cyw-supplicant"
+DEPENDS = " libnl wpa-supplicant cyw-supplicant linux-firmware"
 
 do_compile () {
 	echo "Compiling: "
@@ -120,6 +127,14 @@ do_install () {
 	install -m 755 ${S}/switch_module_v1.2.sh ${D}/usr/sbin/switch_module_v1.2.sh
 
 	ln -sf /usr/sbin/wpa_supplicant.cyw ${D}${sbindir}/wpa_supplicant
+
+#	Installing 8997 Firmware files
+	install -m 0644 ${S}/imx-firmware/nxp/FwImage_8997/pcie8997_wlan_v4.bin ${D}/lib/firmware/nxp
+	install -m 0644 ${S}/imx-firmware/nxp/FwImage_8997/pcieuart8997_combo_v4.bin ${D}/lib/firmware/nxp
+	install -m 0644 ${S}/git/mrvl/pcieusb8997_combo_v4.bin ${D}/lib/firmware/nxp
+	install -m 0644 ${S}/imx-firmware/nxp/FwImage_8997/helper_uart_3000000.bin ${D}/lib/firmware/nxp
+	install -m 0644 ${S}/imx-firmware/nxp/FwImage_8997/uart8997_bt_v4.bin ${D}/lib/firmware/nxp
+
 }
 
 PACKAGES =+ "${PN}-mfgtest"
