@@ -3,6 +3,8 @@
 # Needed to support writes to otherwise read only memory
 . /etc/profile.d/fw_unlock_mmc.sh 
 
+VERSION="1.0"
+
 function current() {
   echo ""
   echo "Current setup:"
@@ -101,7 +103,7 @@ function prepare_for_cypress() {
 function switch_to_brcm_sdio() {
   echo ""
   echo "Setting up for 1DX, 1LV, 1MW, 1WZ (Cypress - SDIO)"
-  fw_setenv fdt_file imx6dlea-com-kit_v2.dtb
+  fw_setenv fdt_file imx7ulpea-ucom-kit_v2.dtb
   prepare_for_cypress
   echo ""
 }
@@ -109,7 +111,7 @@ function switch_to_brcm_sdio() {
 function switch_to_brcm_pcie() {
   echo ""
   echo "Setting up for 1CX, 1VA (Cypress - PCIe)"
-  fw_setenv fdt_file imx6dlea-com-kit_v2-pcie.dtb
+  fw_setenv fdt_file imx7ulpea-ucom-kit_v2-pcie.dtb
   prepare_for_cypress
   echo ""
 }
@@ -117,7 +119,7 @@ function switch_to_brcm_pcie() {
 function switch_to_nxp_sdio() {
   echo ""
   echo "Setting up for 1ZM (NXP - SDIO)"
-  fw_setenv fdt_file imx6dlea-com-kit_v2.dtb
+  fw_setenv fdt_file imx7ulpea-ucom-kit_v2.dtb
   prepare_for_nxp_sdio
   echo ""
 }
@@ -125,7 +127,7 @@ function switch_to_nxp_sdio() {
 function switch_to_nxp_ym_sdio() {
   echo ""
   echo "Setting up for 1YM (NXP - SDIO)"
-  fw_setenv fdt_file imx6dlea-com-kit_v2.dtb
+  fw_setenv fdt_file imx7ulpea-ucom-kit_v2.dtb
   prepare_for_nxp_ym_sdio_and_pcie
   echo ""
 }
@@ -134,13 +136,15 @@ function switch_to_nxp_ym_sdio() {
 function switch_to_nxp_ym_pcie() {
   echo ""
   echo "Setting up for 1YM (NXP - PCIe)"
-  fw_setenv fdt_file imx6dlea-com-kit_v2-pcie.dtb
+  fw_setenv fdt_file imx7ulpea-ucom-kit_v2-pcie.dtb
   prepare_for_nxp_ym_sdio_and_pcie
   echo ""
 }
 
 
 function usage() {
+  echo ""
+  echo "Version: $VERSION"
   echo ""
   echo "Usage:"
   echo "  $0  <module>"

@@ -3,6 +3,8 @@
 # Needed to support writes to otherwise read only memory
 . /etc/profile.d/fw_unlock_mmc.sh 
 
+VERSION="1.0"
+
 function current() {
   echo ""
   echo "Current setup:"
@@ -141,6 +143,8 @@ function switch_to_nxp_ym_pcie() {
 
 
 function usage() {
+  echo ""
+  echo "Version: $VERSION"
   echo ""
   echo "Usage:"
   echo "  $0  <module>"
