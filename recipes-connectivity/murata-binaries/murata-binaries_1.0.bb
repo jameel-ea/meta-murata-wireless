@@ -52,6 +52,7 @@ do_compile () {
         echo "Testing B  Display:: ${B}"
         echo "Testing D  Display:: ${D}"
         echo "WORK_DIR :: ${WORKDIR}"
+	echo "MACHINE TYPE :: ${MACHINE}"
         echo "PWD :: "
         pwd
 }
@@ -145,7 +146,8 @@ do_install () {
 	install -m 0644 ${S}/imx-firmware/nxp/FwImage_8997/uart8997_bt_v4.bin ${D}/lib/firmware/nxp
 
 #	Based on MACHINE type
-	case $MACHINE in
+	echo "DEBUG:: MACHINE TYPE :: ${MACHINE}"
+	case ${MACHINE} in
 	  imx6dlea-com)
 		install -m 755 ${S}/switch_module_v1.4_imx6dlea-com.sh ${D}/usr/sbin/switch_module_v1.4.sh
 		;;
@@ -197,3 +199,4 @@ FILES_${PN}-mfgtest = " \
 
 INSANE_SKIP_${PN} += "build-deps"
 INSANE_SKIP_${PN} += "file-rdeps"
+
